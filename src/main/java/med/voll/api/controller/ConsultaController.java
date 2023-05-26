@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import med.voll.api.domain.consulta.AgendaDeConsulta;
+import med.voll.api.domain.consulta.ConsultaRepository;
 import med.voll.api.domain.consulta.DadosAgendamentoConsulta;
-import med.voll.api.domain.consulta.DadosDetalhamentoConsulta;
 
 @RestController
 @RequestMapping("/consultas")
@@ -21,12 +21,15 @@ public class ConsultaController {
     @Autowired
     private AgendaDeConsulta consulta;
 
+    @Autowired
+    private ConsultaRepository consultaRepository;
+
     @PostMapping
     @Transactional
     public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAgendamentoConsulta dados){
         System.err.println(dados);
-        consulta.agendar(dados);
-        return ResponseEntity.ok(new DadosDetalhamentoConsulta(null,null,null,null));
+        var dto = consulta.agendar(dados);
+        return ResponseEntity.ok(dto);
 
     }
 }

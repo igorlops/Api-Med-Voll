@@ -2,7 +2,7 @@ package med.voll.api.domain.consulta;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Embedded;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -13,15 +13,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.domain.endereco.Endereco;
 import med.voll.api.domain.medico.Medico;
-import med.voll.api.domain.paciente.DadosAtualizacaoPacientes;
-import med.voll.api.domain.paciente.DadosPacienteCadastrados;
 import med.voll.api.domain.paciente.Paciente;
 
 @Entity(name = "Consulta")
@@ -47,4 +43,11 @@ public class Consulta {
     
     private LocalDateTime data;
 
+    @Column(name = "motivo_cancelamento")
+    @Enumerated(EnumType.STRING)
+    private MotivoCancelamento motivoCancelamento;
+
+    public void cancelar(MotivoCancelamento motivo) {
+        this.motivoCancelamento = motivo;
+    }
 }
