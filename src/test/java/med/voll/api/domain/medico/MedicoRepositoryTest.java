@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 
 import med.voll.api.domain.consulta.Consulta;
+import med.voll.api.domain.endereco.DadosEndereco;
 import med.voll.api.domain.paciente.DadosPacienteCadastrados;
 import med.voll.api.domain.paciente.Paciente;
 
